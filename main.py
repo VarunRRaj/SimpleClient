@@ -1,0 +1,3 @@
+import collector
+
+collector.collect()
