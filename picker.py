@@ -1,5 +1,5 @@
 from collections import deque
-
+import publisher
 
 class Picker:
     """A Picker Object will take in one dimensional data and calculate the
@@ -64,6 +64,7 @@ class Picker:
     def pickDetected(self):
         """Publishes a confirmed pick."""
         print(self.currentPick)
+        publisher.publish(str(self.currentPick))
 
 
 
