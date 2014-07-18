@@ -33,11 +33,12 @@ class Orienter:
             self.tempDown = self.unitDown
 
         differences = [a-b for a,b in zip(self.unitDown, newDown)]
-        diffTemp = [a-b for a, b in zip(self.tempDown, newDown)]    
 
         # Update the down vector if it has been consistently wrong.
-        if reduce((lambda x, y: x or y), [diff > 0.01 for diff in differences]):
+        if reduce((lambda x, y: x or y), [diff > 0.0001 for diff in differences]):
             if self.discrepancies > 100000: # Down may be wrong.
+                diffTemp = [a-b for a, b in zip(self.tempDown, newDown)]
+                self.tempDown = newDown    
                 if self.stable > 1000: # Down is definitely wrong
                     self.discrepancies = 0
                     self.stable = 0
@@ -45,7 +46,8 @@ class Orienter:
                     self.actualDownMagnitude = self.currMagnitude
                 elif reduce((lambda x, y: x or y), [diff < .05 for diff in diffTemp]):
                     self.stable += 1
-                    self.tempDown = newDown
+                else:
+                    self.stable = 0
             else:
                 self.discrepancies += 1
         else: # Down is right
