@@ -5,11 +5,9 @@ class Orienter:
     """An Orienter object decomposes 3D data into vertical and lateral components."""
     def __init__(self):
         self.unitDown = None
-        self.unitdownSquared = None
-        self.discrepancies = 0
-
         self.tempDown = None
-        self.tempDownSquared = None
+        
+        self.discrepancies = 0
         self.stable = 0
 
         self.currAccel = None
@@ -30,10 +28,8 @@ class Orienter:
     
         if self.unitDown == None:
             self.unitDown = newDown
-            self.unitDownSquared = [comp**2 for comp in self.unitDown]
         if self.tempDown == None:
             self.tempDown = self.unitDown
-            self.tempDownSquared = self.unitDownSquared
 
         differences = [a-b for a,b in zip(self.unitDown, newDown)]
         diffTemp = [a-b for a, b in zip(self.tempDown, newDown)]    
@@ -45,11 +41,9 @@ class Orienter:
                     self.discrepancies = 0
                     self.stable = 0
                     self.unitDown = self.tempDown
-                    self.unitDownSquared = self.tempDownSquared
                 elif reduce((lambda x, y: x or y), [diff < .05 for diff in diffTemp]):
                     self.stable += 1
                     self.tempDown = newDown
-                    self.tempDownSquared = [acc**2 for acc in newDown]
             else:
                 self.discrepancies += 1
         else: # Down is right
