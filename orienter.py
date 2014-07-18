@@ -1,11 +1,6 @@
 import time
 import math
 
-def timestamp(data):
-    """An accessory function that timestamps a list."""
-    data.append(time.time())
-    return data
-
 class Orienter:
     """An Orienter object decomposes 3D data into vertical and lateral components."""
     def __init__(self):
@@ -23,6 +18,9 @@ class Orienter:
         self.currMagnitudeSquared = None
 
     def checkDown(self):
+        """ Timestamp """ 
+        self.timestamp = time.time()
+        
         """Verifies that the current down vector is good enough."""
         self.currAccelSquared = [acc**2 for acc in self.currAccel]
         self.currMagnitudeSquared = sum(self.currAccelSquared)
@@ -70,4 +68,4 @@ class Orienter:
         #The side component is determined by the Pythagorean theorem.
         sideMagnitude = math.sqrt(abs(self.currMagnitudeSquared - downMagnitude**2))
         
-        return timestamp([downMagnitude, sideMagnitude])
+        return [downMagnitude, sideMagnitude, self.timestamp]
