@@ -38,7 +38,6 @@ class Orienter:
         if reduce((lambda x, y: x or y), [diff > 0.0001 for diff in differences]):
             if self.discrepancies > 100000: # Down may be wrong.
                 diffTemp = [a-b for a, b in zip(self.tempDown, newDown)]
-                self.tempDown = newDown    
                 if self.stable > 1000: # Down is definitely wrong
                     self.discrepancies = 0
                     self.stable = 0
@@ -48,6 +47,7 @@ class Orienter:
                     self.stable += 1
                 else:
                     self.stable = 0
+                    self.tempDown = newDown    
             else:
                 self.discrepancies += 1
         else: # Down is right
