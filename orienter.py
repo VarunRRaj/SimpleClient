@@ -28,6 +28,7 @@ class Orienter:
     
         if self.unitDown == None:
             self.unitDown = newDown
+            self.actualDownMagnitude = self.currMagnitude
         if self.tempDown == None:
             self.tempDown = self.unitDown
 
@@ -41,6 +42,7 @@ class Orienter:
                     self.discrepancies = 0
                     self.stable = 0
                     self.unitDown = self.tempDown
+                    self.actualDownMagnitude = self.currMagnitude
                 elif reduce((lambda x, y: x or y), [diff < .05 for diff in diffTemp]):
                     self.stable += 1
                     self.tempDown = newDown
@@ -58,8 +60,10 @@ class Orienter:
         self.currAccel = accel
         self.checkDown()
         #The down component is the scalar product of currAccel and unitDown
-        downMagnitude = sum([a*b for a,b in zip(self.unitDown, self.currAccel)])
+        currentDownMagnitude = sum([a*b for a,b in zip(self.unitDown, self.currAccel)])
+        #Subtract the current Magnitude in the down direction, by the recorded magnitude in the down direction
+        downMagnitude = currentDownMagnitude - self.actualDownMagnitude
         #The side component is determined by the Pythagorean theorem.
-        sideMagnitude = math.sqrt(abs(self.currMagnitudeSquared - downMagnitude**2))
+        sideMagnitude = math.sqrt(abs(self.currMagnitudeSquared - currentDownMagnitude**2))
         
         return [downMagnitude, sideMagnitude, self.timestamp]
