@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 """Copyright 2010 Phidgets Inc.
-This work is licensed under the Creative Commons Attribution 2.5 Canada License. 
+This work is licensed under the Creative Commons Attribution 2.5 Canada License.
 To view a copy of this license, visit http://creativecommons.org/licenses/by/2.5/ca/
 
 Modified by Varun Raj and Sanket More for SCALE
@@ -58,9 +58,14 @@ def SpatialData(e):
             oriented = ori.orient(spatialData.Acceleration)
             zPicker.add([oriented[0], oriented[2]])
             xyPicker.add([oriented[1], oriented[2]])
-            
-def collect():
+
+def collect(zWindow, zThreshold, xyWindow, xyThreshold):
     """Collects data"""
+    global zPicker, xyPicker
+
+    zPicker = picker.Picker('z', zWindow, zThreshold)
+    xyPicker = picker.Picker('xy', xyWindow, xyThreshold)
+
     #Main Program Code
     try:
         spatial.setOnAttachHandler(SpatialAttached)
@@ -71,14 +76,14 @@ def collect():
         print("Phidget Exception %i: %s" % (e.code, e.details))
         print("Exiting....")
         exit(1)
-    
+
     try:
         spatial.openPhidget()
     except PhidgetException as e:
         print("Phidget Exception %i: %s" % (e.code, e.details))
         print("Exiting....")
         exit(1)
-    
+
     try:
         spatial.waitForAttach(10000)
     except PhidgetException as e:
@@ -91,7 +96,7 @@ def collect():
             exit(1)
         print("Exiting....")
         exit(1)
-    
+
     sys.stdin.read(1)
 
     try:

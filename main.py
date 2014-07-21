@@ -1,3 +1,3 @@
 import collector
 
-collector.collect()
+collector.collect(250,0,250,0)
