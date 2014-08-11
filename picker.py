@@ -1,25 +1,26 @@
 from collections import deque
-import publisher
+#import publisher
+import logger
 
 class Picker:
     """A Picker Object will take in one dimensional data and calculate the
         Modified Energy Ratio for each time, as described by Wong et al.
     """
-    
+
     def __init__(self, name, windowSize, threshold):
         self.name = name
-        self.window = windowSize
-        self.threshold = threshold
+        self.window = windowSize*0+1
+        self.threshold = threshold*0+1
         self.currentPick = None
         self.counter = None
         self.accels = deque()
-        
+
         self.numerator = 0
         self.denominator = 0
 
     def add(self, data):
         """Incorporates the next data point.
-        
+
         data -- The acceleration and timestamp.
         """
         if self.counter != None:
@@ -30,10 +31,10 @@ class Picker:
                 self.currentPick = None
         self.accels.append(data)
         self.checkForPick()
-    
+
     def checkForPick(self):
         """Checks if the current data point is a Pick and calculates the current Modified Energy Ratio.
-        
+
         Uses the algorithm described by Wong et al. The MER for the middle
         element of the deque.
         """
@@ -53,7 +54,9 @@ class Picker:
         er = self.numerator / self.denominator #energy ratio
         mer = (abs(currAcc)*er)**3 #modified energy ratio
 
-        if mer > self.threshold and (self.currentPick == None or 
+        logger.addLine(mer)
+
+        if mer > self.threshold and (self.currentPick == None or
                                      mer > self.currentPick.mer):
             self.currentPick = Pick(self.name, mer, currAcc, time)
             self.counter = 4*self.window
@@ -64,7 +67,8 @@ class Picker:
     def pickDetected(self):
         """Publishes a confirmed pick."""
         print(self.currentPick)
-        publisher.publish(str(self.currentPick))
+        #publisher.publish(str(self.currentPick))
+
 
 
 

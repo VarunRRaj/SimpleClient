@@ -1,20 +1,21 @@
 from collections import deque
 import publisher
 import math
+import logger
 
 class Picker:
     """A Picker Object will take in one dimensional data and calculate the
         Modified Energy Ratio for each time, as described by Wong et al.
     """
-    
+
     def __init__(self, name, windowSize, threshold):
         self.name = name
-        self.window = windowSize
-        self.threshold = threshold
+        self.window = windowSize*0+1
+        self.threshold = threshold*0
         self.currentPick = None
         self.counter = None
         self.accels = deque()
-        
+
         self.sumLTA = 0
         self.sumSTA = 0
         self.sum2LTA = 0
@@ -22,7 +23,7 @@ class Picker:
 
     def add(self, data):
         """Incorporates the next data point.
-        
+
         data -- The acceleration and timestamp.
         """
         if self.counter != None:
@@ -33,10 +34,10 @@ class Picker:
                 self.currentPick = None
         self.accels.append(data)
         self.checkForPick()
-    
+
     def checkForPick(self):
         """Checks if the current data point is a Pick and calculates the current Modified Energy Ratio.
-        
+
          """
         length = len(self.accels)
         if length <= self.window*3: #Populate the deque of acceleration data
@@ -49,14 +50,15 @@ class Picker:
 
         self.LTA = self.sumLTA/(self.window*3)
         self.stdev = math.sqrt(self.sum2LTA/(self.window*3) - self.LTA**2)
-        
+
         self.sumSTA = 0
         for i in range(self.window):
             self.sumSTA += abs(self.accels[-1-i][0] - self.LTA)
         self.STA = self.sumSTA/self.window
-            
+
         metric = self.STA/self.stdev
-        
+        logger.addLine(metric)
+
         time = self.accels[-1][1]
 
         currAcc = self.accels[-1][0]

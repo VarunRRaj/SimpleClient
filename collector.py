@@ -22,12 +22,16 @@ from Phidgets.Devices.Spatial import Spatial, SpatialEventData, TimeSpan
 
 #SimpleClient imports
 import csnpicker
+import picker
 import orienter
+import logger
 
 ori = orienter.Orienter()
 
-zPicker = csnpicker.Picker('z', 250, 32.0)
-xyPicker = csnpicker.Picker('xy', 250, 0.01)
+zCSNPicker = csnpicker.Picker('z', 250, 32.0)
+xyCSNPicker = csnpicker.Picker('xy', 250, 0.01)
+zPicker = picker.Picker('z',250,32.0)
+xyPicker = picker.Picker('xy',250,32.0)
 
 #Create an accelerometer object
 try:
@@ -56,8 +60,12 @@ def SpatialData(e):
     for index, spatialData in enumerate(e.spatialData):
         if len(spatialData.Acceleration) > 0:
             oriented = ori.orient(spatialData.Acceleration)
+            logger.add(oriented)
+
             zPicker.add([oriented[0], oriented[2]])
+            zCSNPicker.add([oriented[0],oriented[2]])
             xyPicker.add([oriented[1], oriented[2]])
+            xyCSNPicker.add([oriented[1],oriented[2]])
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):
     """Collects data"""
