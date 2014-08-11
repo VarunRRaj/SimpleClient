@@ -1,7 +1,7 @@
 import csv
 import datetime
 
-def _init_(self)
+def __init__(self):
     datetime = str(datetime.datetime.now())
     self.updatedfilename = 'shaketest_'+datetime+'.csv'
 
