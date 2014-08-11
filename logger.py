@@ -11,6 +11,7 @@ def addToLine(data):
 
 def addLine():
     ''' simply logs data '''
+    global line
 
     if isinstance(line, list):
         ofile = open(updatedfilename, "a")

@@ -1,5 +1,5 @@
 from collections import deque
-import publisher
+#import publisher
 import math
 import logger
 
@@ -70,7 +70,7 @@ class Picker:
     def pickDetected(self):
         """Publishes a confirmed pick."""
         print(self.currentPick)
-        publisher.publish(str(self.currentPick))
+        #publisher.publish(str(self.currentPick))
 
 
 

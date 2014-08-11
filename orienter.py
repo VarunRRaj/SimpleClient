@@ -67,7 +67,9 @@ class Orienter:
         currentDownMagnitude = sum([a*b for a,b in zip(self.unitDown, self.currAccel)])
         #Subtract the current Magnitude in the down direction, by the recorded magnitude in the down direction
         downMagnitude = currentDownMagnitude - self.actualDownMagnitude
+        logger.addToLine(downMagnitude)
         #The side component is determined by the Pythagorean theorem.
         sideMagnitude = math.sqrt(abs(self.currMagnitudeSquared - currentDownMagnitude**2))
+        logger.addToLine(sideMagnitude)
 
         return [downMagnitude, sideMagnitude, self.timestamp]
