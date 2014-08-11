@@ -1,7 +1,6 @@
 import csv
 import time
 
-datetime = str(datetime.datetime.now())
 datetime = time.strftime("%Y%m%d_%H%M%S")
 updatedfilename = 'shaketest_'+datetime+'.csv'
 line = []
