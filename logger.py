@@ -1,7 +1,7 @@
 import csv
 import datetime
 
-tdatetime = str(datetime.datetime.now())
+datetime = str(datetime.datetime.now())
 updatedfilename = 'shaketest_'+datetime+'.csv'
 
 def addLine(data):
