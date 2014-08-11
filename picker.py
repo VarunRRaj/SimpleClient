@@ -54,7 +54,7 @@ class Picker:
         er = self.numerator / self.denominator #energy ratio
         mer = (abs(currAcc)*er)**3 #modified energy ratio
 
-        logger.addLine(mer)
+        logger.addToLine(mer)
 
         if mer > self.threshold and (self.currentPick == None or
                                      mer > self.currentPick.mer):

@@ -1,5 +1,6 @@
 import time
 import math
+import logger
 
 class Orienter:
     """An Orienter object decomposes 3D data into vertical and lateral components."""
@@ -18,6 +19,7 @@ class Orienter:
     def checkDown(self):
         """ Timestamp """
         self.timestamp = time.time()
+        logger.addToLine(self.timestamp)
 
         """Verifies that the current down vector is good enough."""
         self.currAccelSquared = [acc**2 for acc in self.currAccel]

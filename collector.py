@@ -60,7 +60,7 @@ def SpatialData(e):
     for index, spatialData in enumerate(e.spatialData):
         if len(spatialData.Acceleration) > 0:
             oriented = ori.orient(spatialData.Acceleration)
-            logger.add(oriented)
+            logger.addToLine(oriented)
 
             zPicker.add([oriented[0], oriented[2]])
             zCSNPicker.add([oriented[0],oriented[2]])

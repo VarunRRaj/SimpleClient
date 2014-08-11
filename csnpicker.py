@@ -57,7 +57,7 @@ class Picker:
         self.STA = self.sumSTA/self.window
 
         metric = self.STA/self.stdev
-        logger.addLine(metric)
+        logger.addToLine(metric)
 
         time = self.accels[-1][1]
 
