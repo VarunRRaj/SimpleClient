@@ -6,10 +6,10 @@ updatedfilename = 'shaketest_'+datetime+'.csv'
 line = []
 
 def addToLine(data):
-    line.append.(data)
+    line.append(data)
 
 
-def addLine:
+def addLine():
     ''' simply logs data '''
 
     if isinstance(line, list):
