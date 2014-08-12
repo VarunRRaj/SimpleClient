@@ -24,3 +24,7 @@ def addLine():
         print("No input for logger")
 
     line = []
+
+def addSeparator(text):
+    with open(updatedfilename, "a") as myFile:
+        myFile.write(text+'\n')

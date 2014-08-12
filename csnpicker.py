@@ -69,7 +69,7 @@ class Picker:
 
     def pickDetected(self):
         """Publishes a confirmed pick."""
-        print(self.currentPick)
+        #print(self.currentPick)
         #publisher.publish(str(self.currentPick))
 
 

@@ -65,6 +65,7 @@ def SpatialData(e):
             zCSNPicker.add([oriented[0],oriented[2]])
             xyPicker.add([oriented[1], oriented[2]])
             xyCSNPicker.add([oriented[1],oriented[2]])
+            
             logger.addLine()
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):

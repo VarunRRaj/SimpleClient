@@ -1,3 +1,6 @@
 import collector
+import logger
 
-collector.collect(250,0.9,250,0.9)
+logger.addSeparator('WINDOW=1')
+collector.collect(1,0,1,0)
+logger.addSeparator('WINDOW=2')
