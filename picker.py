@@ -59,7 +59,7 @@ class Picker:
         if mer > self.threshold and (self.currentPick == None or
                                      mer > self.currentPick.mer):
             self.currentPick = Pick(self.name, mer, currAcc, time)
-            self.counter = 1 #4*self.window
+            self.counter = 0 #4*self.window
 
         self.denominator += self.accels[-1][0]**2 - nextMag
         self.numerator += nextMag - self.accels.popleft()[0]**2

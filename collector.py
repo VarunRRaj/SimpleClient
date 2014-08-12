@@ -70,10 +70,12 @@ def SpatialData(e):
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):
     """Collects data"""
-    global zPicker, xyPicker
+    global zPicker, xyPicker, zCSNPicker, xyCSNPicker
 
-    zPicker = csnpicker.Picker('z', zWindow, zThreshold)
+    zPicker = picker.Picker('z', zWindow, zThreshold)
+    zCSNPicker = csnpicker.Picker('z',zWindow,zThreshold)
     xyPicker = csnpicker.Picker('xy', xyWindow, xyThreshold)
+    xyCSNPicker = csnpicker.Picker('xy', xyWindow, xyThreshold)
 
     #Main Program Code
     try:
