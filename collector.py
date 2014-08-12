@@ -110,8 +110,7 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         exit(1)
 
     time.sleep(5)
-    #time.sleep(200)
-
+    #time.sleep(120)
 
     try:
         spatial.closePhidget()
