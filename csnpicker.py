@@ -10,8 +10,8 @@ class Picker:
 
     def __init__(self, name, windowSize, threshold):
         self.name = name
-        self.window = windowSize*0+1
-        self.threshold = threshold*0
+        self.window = windowSize
+        self.threshold = threshold
         self.currentPick = None
         self.counter = None
         self.accels = deque()
@@ -65,7 +65,7 @@ class Picker:
 
         if metric > self.threshold and (self.currentPick == None or metric > self.currentPick.metric):
             self.currentPick = Pick(self.name, metric, currAcc, time)
-            self.counter = self.window
+            self.counter = 1 #self.window
 
     def pickDetected(self):
         """Publishes a confirmed pick."""

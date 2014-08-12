@@ -28,10 +28,10 @@ import logger
 
 ori = orienter.Orienter()
 
-zCSNPicker = csnpicker.Picker('z', 250, 32.0)
-xyCSNPicker = csnpicker.Picker('xy', 250, 0.01)
-zPicker = picker.Picker('z',250,32.0)
-xyPicker = picker.Picker('xy',250,32.0)
+zCSNPicker = csnpicker.Picker('z', 1, 0)
+xyCSNPicker = csnpicker.Picker('xy', 1, 0)
+zPicker = picker.Picker('z',1,0)
+xyPicker = picker.Picker('xy',1,0)
 
 #Create an accelerometer object
 try:
@@ -65,7 +65,7 @@ def SpatialData(e):
             zCSNPicker.add([oriented[0],oriented[2]])
             xyPicker.add([oriented[1], oriented[2]])
             xyCSNPicker.add([oriented[1],oriented[2]])
-            
+
             logger.addLine()
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):
@@ -107,6 +107,7 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         exit(1)
 
     sys.stdin.read(1)
+
 
     try:
         spatial.closePhidget()
