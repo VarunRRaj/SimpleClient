@@ -74,7 +74,7 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
 
     zPicker = picker.Picker('z', zWindow, zThreshold)
     zCSNPicker = csnpicker.Picker('z',zWindow,zThreshold)
-    xyPicker = csnpicker.Picker('xy', xyWindow, xyThreshold)
+    xyPicker = picker.Picker('xy', xyWindow, xyThreshold)
     xyCSNPicker = csnpicker.Picker('xy', xyWindow, xyThreshold)
 
     #Main Program Code
