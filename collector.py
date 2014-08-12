@@ -21,6 +21,7 @@ from Phidgets.Events.Events import SpatialDataEventArgs, AttachEventArgs, Detach
 from Phidgets.Devices.Spatial import Spatial, SpatialEventData, TimeSpan
 
 #SimpleClient imports
+import time
 import csnpicker
 import picker
 import orienter
@@ -108,7 +109,8 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         print("Exiting....")
         exit(1)
 
-    sys.stdin.read(1)
+    time.sleep(5)
+    #time.sleep(200)
 
 
     try:
