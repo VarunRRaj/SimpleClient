@@ -53,7 +53,7 @@ class Picker:
 
         er = self.numerator / self.denominator #energy ratio
         mer = (abs(currAcc)*er)**3 #modified energy ratio
-        print(mer)
+        #print(mer)
         logger.addToLine(mer)
 
         if mer > self.threshold and (self.currentPick == None or
@@ -66,7 +66,7 @@ class Picker:
 
     def pickDetected(self):
         """Publishes a confirmed pick."""
-        print(self.currentPick)
+        #print(self.currentPick)
         #publisher.publish(str(self.currentPick))
 
 

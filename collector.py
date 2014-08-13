@@ -71,6 +71,9 @@ def SpatialData(e):
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):
     """Collects data"""
+
+    print('hi')
+
     global zPicker, xyPicker, zCSNPicker, xyCSNPicker
 
     zPicker = picker.Picker('z', zWindow, zThreshold)
@@ -109,7 +112,7 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         print("Exiting....")
         exit(1)
 
-    time.sleep(5)
+    time.sleep(30)
     #time.sleep(120)
 
     try:
@@ -118,4 +121,4 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         print("Phidget Exception %i: %s" % (e.code, e.details))
         print("Exiting....")
         exit(1)
-    exit(0)
+    #exit(0)
