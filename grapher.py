@@ -21,12 +21,15 @@ def animate(dataArray):
     for eachLine in dataArray:
         if len(eachLine)>1:
             a,b,c,d,e,f,g = eachLine.split(',')
-            aR.append(x)
-            aR.append(x)
-            aR.append(x)
-            aR.append(x)
+            aR.append(a)
+            bR.append(b)
+            cR.append(c)
+            dR.append(d)
+            eR.append(e)
+            fR.append(f)
+            gR.append(g)
     ax1.clear()
-    ax1.plot(xar,yar)
+    ax1.plot(aR,dR)
 
 ani = animation.FuncAnimation(fig, animate, interval = 1000)
 plt.show()
