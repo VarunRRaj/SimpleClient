@@ -20,7 +20,7 @@ def findDataSet(filename, rowbegin, rowend, columnvalue):
         if row == rowend:
             read = 0
         if read == 1:
-            if len(row) >= columnvalue+1:
+            if len(row) == 7:
                 arrayTime.append(float(row[0]))
                 if columnvalue == 1:
                     arrayValue.append(float(row[1]))
@@ -31,7 +31,7 @@ def findDataSet(filename, rowbegin, rowend, columnvalue):
                 elif columnvalue == 4:
                     arrayValue.append(float(row[4]))
                 elif columnvalue == 5:
-                    arrayValue.append(float(row[5]))
+		    arrayValue.append(float(row[5]))
                 elif columnvalue == 6:
                     arrayValue.append(float(row[6]))
                 else:
@@ -39,7 +39,6 @@ def findDataSet(filename, rowbegin, rowend, columnvalue):
                     sys.exit()
         if row == rowbegin:
             read = 1
-	    print('Begin')
 
     return arrayTime, arrayValue
 
@@ -174,11 +173,9 @@ def animate(time1,value1,time2,value2):
     a = time1[0]
     b = time2[0]
     time1 = [x - a for x in time1]
-    time2 = [x - b for x in time2]
+    time2 = [x - a for x in time2]
 
-    ax1.clear()
-    ax2.clear()
-    ax1.plot(time1,value1,'b',time2, value2,'g')
+    ax1.plot(time1,valueA,'b',time2, valueB,'g')
     
 
 
@@ -188,11 +185,9 @@ def animate(time1,value1,time2,value2):
 #BEGIN
 
 
-
 fig1 = plt.figure()
-fig2 = plt.figure()
 ax1 = fig1.add_subplot(1,1,1)
-ax2 = fig2.add_subplot(1,1,1)
+ax1.clear()
 
 
 
@@ -225,4 +220,5 @@ time1,value1 = findDataSet(firstfilename, firstrowbegin, firstrowend, firstmeasu
 time2,value2 = findDataSet(secondfilename, secondrowbegin, secondrowend, secondmeasurement)
 
 animate(time1,value1,time2,value2)
+
 plt.show()
