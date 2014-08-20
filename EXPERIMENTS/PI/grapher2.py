@@ -166,16 +166,16 @@ def getCharacterWindow():
     
 
 def animate(time1,value1,time2,value2):
-    a = reduce(lambda x, y: x + y, value1) / len(value1)
-    b = reduce(lambda x, y: x + y, value2) / len(value2)
-    valueA = [x/a for x in value1]
-    valueB = [x/b for x in value2]
+    #a = reduce(lambda x, y: x + y, value1) / len(value1)
+    #b = reduce(lambda x, y: x + y, value2) / len(value2)
+    #valueA = [x/a for x in value1]
+    #valueB = [x/b for x in value2]
     a = time1[0]
     b = time2[0]
     time1 = [x - a for x in time1]
     time2 = [x - a for x in time2]
 
-    ax1.plot(time1,valueA,'b',time2, valueB,'g')
+    ax1.plot(time1,value1,'b',time2, value2,'g')
     
 
 
