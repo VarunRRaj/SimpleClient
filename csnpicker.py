@@ -40,7 +40,7 @@ class Picker:
 
          """
         length = len(self.accels)
-        if length <= self.window*3: #Populate the deque of acceleration data
+        if length <= self.window*20: #Populate the deque of acceleration data
             self.sum2LTA += self.accels[-1][0]**2
             self.sumLTA += self.accels[-1][0]
             return
@@ -48,7 +48,7 @@ class Picker:
         self.sum2LTA += self.accels[-1][0]**2 - self.accels[0][0]**2
         self.sumLTA += self.accels[-1][0] - self.accels.popleft()[0]
 
-        self.LTA = self.sumLTA/(self.window*3)
+        self.LTA = self.sumLTA/(self.window*20)
         self.stdev = math.sqrt(self.sum2LTA/(self.window*3) - self.LTA**2)
 
         self.sumSTA = 0
