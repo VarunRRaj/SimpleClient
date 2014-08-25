@@ -60,19 +60,20 @@ def SpatialData(e):
     source = e.device
     for index, spatialData in enumerate(e.spatialData):
         if len(spatialData.Acceleration) > 0:
-            oriented = ori.orient(spatialData.Acceleration)
+            addToLine(spatialData.Acceleration)
+            #oriented = ori.orient(spatialData.Acceleration)
 
-            zPicker.add([oriented[0], oriented[2]])
-            zCSNPicker.add([oriented[0],oriented[2]])
-            xyPicker.add([oriented[1], oriented[2]])
-            xyCSNPicker.add([oriented[1],oriented[2]])
+            #zPicker.add([oriented[0], oriented[2]])
+            #zCSNPicker.add([oriented[0],oriented[2]])
+            #xyPicker.add([oriented[1], oriented[2]])
+            #xyCSNPicker.add([oriented[1],oriented[2]])
 
             logger.addLine()
 
 def collect(zWindow, zThreshold, xyWindow, xyThreshold):
     """Collects data"""
 
-    print('hi')
+    print('TEST BEGIN')
 
     global zPicker, xyPicker, zCSNPicker, xyCSNPicker
 
@@ -112,7 +113,7 @@ def collect(zWindow, zThreshold, xyWindow, xyThreshold):
         print("Exiting....")
         exit(1)
 
-    time.sleep(30)
+    time.sleep(300)
     #time.sleep(120)
 
     try:
